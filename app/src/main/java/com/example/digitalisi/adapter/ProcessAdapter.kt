@@ -20,7 +20,7 @@ class ProcessAdapter : RecyclerView.Adapter<ProcessAdapter.ViewHolder>(){
         override fun onBindViewHolder(viewHolder: ViewHolder, pos: Int) {
             viewHolder.itemView.name_id.text = processus[pos].name
             viewHolder.itemView.description_id.text = processus[pos].description
-            viewHolder.itemView.id = processus[pos].id.toInt()
+
         }
 
 

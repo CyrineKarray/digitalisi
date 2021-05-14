@@ -33,7 +33,7 @@ interface ApiService {
             @Query("p") p : Int,
             @Query("c") c : Int,
             @Query("f") userId : String,
-            @Query("f") categorieId : String
+            @Query("f") categoryId : String
 
     ) : Response<List<Process>>
 }

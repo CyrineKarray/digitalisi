@@ -15,8 +15,7 @@ class ProcessViewModel (private val procRepo: ProcessRepo) : ViewModel() {
 
         var processResponse: MutableLiveData<Response<List<Process>>> = MutableLiveData()
 
-        fun getProcessus(cookie : String, p : Int, c : Int, userId : String, categorieId : String, categorieName : String) = viewModelScope.launch(Dispatchers.IO) {
-
+        fun getProcessus(cookie : String, p : Int, c : Int, userId : String, categorieId : String) = viewModelScope.launch(Dispatchers.IO) {
             try{
 
                 val response = procRepo.getProcessus(cookie,p,c,userId,categorieId)

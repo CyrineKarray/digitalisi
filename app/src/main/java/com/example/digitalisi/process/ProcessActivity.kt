@@ -11,6 +11,7 @@ import com.example.digitalisi.R
 import com.example.digitalisi.adapter.ProcessAdapter
 import com.example.digitalisi.repositories.ProcessRepo
 import kotlinx.android.synthetic.main.activity_process.*
+import java.lang.Exception
 
 class ProcessActivity : AppCompatActivity() {
 
@@ -23,9 +24,7 @@ class ProcessActivity : AppCompatActivity() {
 
             setupRecyclerview()
             val procRepo = ProcessRepo()
-            val viewModelFactory = ProcessViewModelFactory(procRepo)
-
-            var viewModel = ViewModelProvider(this, viewModelFactory).get(ProcessViewModel::class.java)
+            val viewmodel = ViewModelProvider(this,ProcessViewModelFactory(procRepo)).get(ProcessViewModel::class.java)
 
             val userCreds = getSharedPreferences("userCreds", MODE_PRIVATE)
             val jsessionid = userCreds.getString("JSESSIONID", "")
@@ -36,11 +35,15 @@ class ProcessActivity : AppCompatActivity() {
             val sessionIdAndToken = "$jsessionid;$token"
 
 
+            Log.d("here",sessionIdAndToken)
 
-            viewModel.getProcessus(sessionIdAndToken,0,100,"user_id="+userId,"categoryId="+categorie_id, categorie_name!!)
+            try{
+            viewmodel.getProcessus(sessionIdAndToken,0,100,"user_id=$userId","categoryId=$categorie_id")
+            }catch (exception : Exception){
+                Log.d("exception",exception.toString())
+            }
 
-
-            viewModel.processResponse.observe(
+            viewmodel.processResponse.observe(
                     this, Observer {
                 response ->
                 if (response.isSuccessful) {
