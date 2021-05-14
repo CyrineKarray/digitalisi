@@ -1,0 +1,12 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:exitFadeDuration="@android:integer/config_shortAnimTime">
+    <item android:state_pressed="false">
+        <color android:color="@android:color/transparent"/>
+    </item>
+
+    <item android:state_pressed="true">
+        <!--<color name="touch_hover">#44565656</color> -->
+        <color android:color="@color/purple_200" />
+    </item>
+    <item android:drawable="@android:color/transparent" />
+</selector>
